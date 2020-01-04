@@ -8,36 +8,18 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
-        String sss = "11222333345555566666611111111111111";
-        LinkedList<Some> lst  = new LinkedList<Some>();
-        boolean checked;
+        String sss = "1266666623334444";
+        int count = 1;
+        int bestCount = 0;
         for (int i = 0; i<sss.length();i++)
         {
-            checked = false;
-            for (Some some:lst)
-            {
-                if (some.value==sss.charAt(i))
-                {
-                    ++some.count;
-                    checked = true;
-                }
+            if (i>0) {
+                if (sss.charAt(i) == sss.charAt(i - 1)) {
+                    ++count;
+                    if (bestCount < count) bestCount = count;
+                } else count = 1;
             }
-            if (!checked)
-                lst.add(new Some(sss.charAt(i)));
         }
-
-        if (!lst.isEmpty()) {
-            char bestOfTheBest = ' ';
-            int bestCount=0;
-            for (Some some:lst)
-            {
-                if (bestCount<some.count) {
-                    bestCount = some.count;
-                    bestOfTheBest = some.value;
-                }
-            }
-            System.out.println("Best symbol is - "+String.valueOf(bestOfTheBest)+". It's count is - " + bestCount);
-        }
-
+        System.out.println("Best count is - " + bestCount);
     }
 }
